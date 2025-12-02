@@ -8,14 +8,29 @@
     
     <style>
         /* =========================================
-           1. RESET & VARIABLES
+           0. IMPORT FONT (Montserrat)
+           ========================================= */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap');
+
+        /* =========================================
+           1. FIX SPECIFICO PER AVADA
+           ========================================= */
+        #toTop, .fusion-back-to-top {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+
+        /* =========================================
+           2. RESET & VARIABLES
            ========================================= */
         :root {
             --fhp-blue: #002D72;
             --fhp-white: #FFFFFF;
             --fhp-silver: #C6C6C6;
             --fhp-dark-overlay: rgba(0, 45, 114, 0.6);
-            --font-main: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-main: 'Montserrat', sans-serif;
             --transition-smooth: all 0.4s ease-out;
         }
 
@@ -25,17 +40,17 @@
             font-family: var(--font-main);
             background-color: var(--fhp-white);
             color: #333;
-            overflow-x: hidden; /* Prevenzione scroll orizzontale */
+            overflow-x: hidden;
             line-height: 1.6;
         }
 
         /* =========================================
-           2. TYPOGRAPHY
+           3. TYPOGRAPHY
            ========================================= */
         h1, h2, h3 { line-height: 1.2; margin-bottom: 1rem; }
         p { margin-bottom: 1.5rem; color: #444; }
 
-        /* Shimmer Effect Component (FHP Style) */
+        /* Shimmer Effect Component */
         .fhp-shimmer {
             --shimmer-base: #FFFFFF;
             --shimmer-shine: #C6C6C6;
@@ -49,7 +64,7 @@
         @keyframes fhp-shimmer-anim { to { background-position: -200% center; } }
 
         /* =========================================
-           3. LAYOUT UTILITIES
+           4. LAYOUT UTILITIES
            ========================================= */
         .container {
             width: 90%;
@@ -60,11 +75,10 @@
 
         .section-padding { padding: 4rem 0; }
 
-        /* Image Reset */
         img { max-width: 100%; height: auto; display: block; }
 
         /* =========================================
-           4. HERO SECTION (Parallax Layer 1)
+           5. HERO SECTION
            ========================================= */
         .hero {
             position: relative;
@@ -100,7 +114,7 @@
             color: var(--fhp-white);
             padding: 20px;
             transform: translateY(0);
-            transition: transform 0.1s linear; /* Smooth JS Parallax */
+            transition: transform 0.1s linear;
         }
 
         .hero h1 {
@@ -112,20 +126,22 @@
         }
 
         .hero p.subtitle {
-            font-size: 1.2rem;
-            font-weight: 300;
-            color: var(--fhp-silver);
-            max-width: 700px;
-            margin: 0 auto;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--fhp-white);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+            max-width: 800px;
+            margin: 1rem auto 0 auto;
+            letter-spacing: 0.5px;
         }
 
         /* =========================================
-           5. SEZIONE 1: PROTAGONISTI
+           6. SEZIONE 1: PROTAGONISTI
            ========================================= */
         .section-protagonists {
             background-color: var(--fhp-white);
             position: relative;
-            z-index: 5; /* Sit on top of hero */
+            z-index: 5;
         }
 
         .section-header { text-align: center; margin-bottom: 3rem; }
@@ -144,34 +160,25 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             transition: var(--transition-smooth);
             overflow: hidden;
-            opacity: 0; /* JS Fade in */
+            opacity: 0;
             transform: translateY(30px);
         }
 
         .card.visible { opacity: 1; transform: translateY(0); }
-
         .card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
 
-        .card-img-wrap {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-
+        .card-img-wrap { height: 200px; overflow: hidden; position: relative; }
         .card-img-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 100%; height: 100%; object-fit: cover;
             transition: transform 0.5s ease;
         }
-
         .card:hover .card-img-wrap img { transform: scale(1.05); }
 
         .card-body { padding: 1.5rem; }
         .card-text { font-weight: 600; color: var(--fhp-blue); font-size: 1.1rem; }
 
         /* =========================================
-           6. SEZIONE 2: ACCORDO (Parallax Video)
+           7. SEZIONE 2: ACCORDO
            ========================================= */
         .section-agreement {
             position: relative;
@@ -185,7 +192,7 @@
         .bg-video-parallax {
             position: absolute;
             top: 0; left: 0;
-            width: 100%; height: 120%; /* Taller for parallax movement */
+            width: 100%; height: 120%;
             object-fit: cover;
             z-index: -2;
             will-change: transform;
@@ -204,34 +211,18 @@
         .section-agreement p { font-size: 1.2rem; color: #f0f0f0; }
 
         /* =========================================
-           7. SEZIONE 3: PIATTAFORMA INTEGRATA
+           8. SEZIONE 3: PIATTAFORMA INTEGRATA
            ========================================= */
         .section-integration { background-color: #F9F9F9; }
-        
-        .integration-flex {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-            align-items: center;
-        }
-
+        .integration-flex { display: flex; flex-direction: column; gap: 3rem; align-items: center; }
         .integration-text h2 { color: var(--fhp-blue); font-size: 2rem; }
-        
         .integration-image {
-            position: relative;
-            width: 100%;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative; width: 100%; border-radius: 4px;
+            overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-
         .integration-image img { width: 100%; display: block; }
-        
-        /* Decorative element */
         .integration-image::after {
-            content: '';
-            position: absolute;
-            bottom: -10px; right: -10px;
+            content: ''; position: absolute; bottom: -10px; right: -10px;
             width: 100px; height: 100px;
             border-right: 4px solid var(--fhp-silver);
             border-bottom: 4px solid var(--fhp-silver);
@@ -239,121 +230,117 @@
         }
 
         /* =========================================
-           8. SEZIONE 4: IMPATTO AMBIENTALE
+           9. SEZIONE 4: IMPATTO AMBIENTALE
            ========================================= */
         .section-environment { background-color: var(--fhp-white); }
-
         .quote-box {
-            background-color: var(--fhp-blue);
-            color: var(--fhp-white);
-            border-radius: 8px;
-            padding: 3rem 2rem;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-            box-shadow: 0 20px 50px rgba(0,45,114,0.2);
+            background-color: var(--fhp-blue); color: var(--fhp-white);
+            border-radius: 8px; padding: 3rem 2rem; position: relative;
+            display: flex; flex-direction: column; align-items: center;
+            gap: 2rem; box-shadow: 0 20px 50px rgba(0,45,114,0.2);
         }
-
         .quote-content { flex: 1; position: relative; }
-        
-        /* Large quote icon */
         .quote-content::before {
-            content: '“';
-            position: absolute;
-            top: -40px; left: -20px;
-            font-size: 8rem;
-            color: rgba(255,255,255,0.1);
-            font-family: serif;
-            line-height: 1;
+            content: '“'; position: absolute; top: -40px; left: -20px;
+            font-size: 8rem; color: rgba(255,255,255,0.1);
+            font-family: serif; line-height: 1;
         }
-
         .quote-box h2 { color: var(--fhp-white); margin-bottom: 1.5rem; }
         .quote-text { font-size: 1.15rem; font-style: italic; color: #E0E0E0; position: relative; z-index: 2; }
-
         .quote-portrait {
-            width: 150px;
-            height: 150px;
-            flex-shrink: 0;
-            border-radius: 50%;
-            overflow: hidden;
+            width: 150px; height: 150px; flex-shrink: 0;
+            border-radius: 50%; overflow: hidden;
             border: 4px solid var(--fhp-silver);
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-        
         .quote-portrait img { width: 100%; height: 100%; object-fit: cover; }
 
         /* =========================================
-           9. FOOTER & UTILS
+           10. SEZIONE 5: GIOCO DI SQUADRA
+           ========================================= */
+        .section-teamwork {
+            position: relative; height: 60vh; min-height: 400px;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; overflow: hidden;
+        }
+        .teamwork-video-bg {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; object-fit: cover; z-index: -2;
+        }
+        .teamwork-overlay {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); z-index: -1;
+        }
+        .teamwork-content h1 {
+            font-size: 2.5rem; font-weight: 800;
+            text-transform: uppercase; letter-spacing: -1px;
+            margin: 0; padding: 0 15px;
+        }
+
+        /* =========================================
+           11. FOOTER (WHITE & LOGO 150px)
            ========================================= */
         footer {
-            background-color: #111;
-            color: #666;
-            text-align: center;
-            padding: 2rem;
+            background-color: var(--fhp-white); /* Sfondo Bianco */
+            color: #333; /* Testo Scuro */
+            padding: 2rem 0;
             font-size: 0.9rem;
+            border-top: 1px solid #eee; /* Sottile linea di separazione */
         }
+        
+        .footer-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            width: 150px; /* Grandezza max richiesta */
+            height: auto;
+            display: block;
+        }
+        
+        .footer-text { margin-bottom: 0; text-align: right; }
 
         /* Back to Top Button */
         .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+            position: fixed; bottom: 20px; right: 20px;
+            width: 60px; height: 60px; border-radius: 50%;
             background-color: var(--fhp-white);
             border: 2px solid var(--fhp-blue);
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            z-index: 100;
-            opacity: 0;
-            visibility: hidden;
+            z-index: 100; opacity: 0; visibility: hidden;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            color: var(--fhp-blue); /* Colore della freccia SVG */
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; color: var(--fhp-blue);
         }
-        
         .back-to-top.show { opacity: 1; visibility: visible; }
         .back-to-top:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); }
-        
-        /* Modifiche per l'icona SVG */
-        .back-to-top svg {
-            width: 32px;
-            height: 32px;
-            stroke-width: 2.5;
-            transition: transform 0.3s ease;
-        }
-        
-        /* Piccola animazione della freccia all'hover */
-        .back-to-top:hover svg {
-            transform: translateY(-3px);
-        }
+        .back-to-top svg { width: 32px; height: 32px; stroke-width: 2.5; transition: transform 0.3s ease; }
+        .back-to-top:hover svg { transform: translateY(-3px); }
 
         /* =========================================
-           10. MEDIA QUERIES (DESKTOP)
+           12. MEDIA QUERIES
            ========================================= */
+        @media (max-width: 767px) {
+            .footer-flex {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            .footer-text { text-align: center; }
+        }
+
         @media (min-width: 768px) {
             .hero h1 { font-size: 4rem; }
-            
+            .teamwork-content h1 { font-size: 4rem; }
             .cards-grid { grid-template-columns: repeat(3, 1fr); }
-            
-            .integration-flex {
-                flex-direction: row;
-                align-items: center;
-            }
+            .integration-flex { flex-direction: row; align-items: center; }
             .integration-text { flex: 1; order: 1; padding-right: 2rem; }
             .integration-image { flex: 1; order: 2; }
-
-            .quote-box {
-                flex-direction: row;
-                text-align: left;
-                padding: 4rem;
-            }
+            .quote-box { flex-direction: row; text-align: left; padding: 4rem; }
             .quote-box h2 { text-align: left; }
             .quote-portrait { width: 200px; height: 200px; margin-left: 2rem; }
             .quote-content { text-align: left; }
@@ -370,7 +357,7 @@
         
         <div class="hero-content parallax-elem" data-speed="0.5">
             <h1 class="fhp-shimmer">Accordo tra F2i, FS Logistix e FHP Group</h1>
-            <p class="subtitle">Un nuovo passo strategico per la logistica intermodale italiana</p>
+            <p class="subtitle">Un passo strategico per la logistica intermodale italiana</p>
         </div>
     </header>
 
@@ -378,8 +365,8 @@
         <section class="section-padding section-protagonists">
             <div class="container">
                 <div class="section-header">
-                    <h2>Un nuovo capitolo per la logistica intermodale italiana</h2>
-                    <p>Nuovo importante passo per lo sviluppo del business della logistica intermodale italiana. I protagonisti sono:</p>
+                    <h2>Si apre un nuovo capitolo per la logistica intermodale italiana</h2>
+                    <p>I protagonisti sono:</p>
                 </div>
 
                 <div class="cards-grid">
@@ -421,7 +408,7 @@
             
             <div class="container agreement-content fade-in-scroll">
                 <h2>L’accordo tra FS Logistix e Compagnia Ferroviaria Italiana</h2>
-                <p>L’accordo firmato oggi prevede la sottoscrizione da parte di FS Logistix dell'aumento di capitale di Compagnia Ferroviaria Italiana (CFI), società posseduta al 100% da FHP Group. L’aumento di capitale avverrà attraverso il conferimento di un numero predeterminato di mezzi di trazione. Al termine FS Logistix sarà titolare del 30% di CFI.</p>
+                <p>L’accordo, firmato oggi, prevede la sottoscrizione da parte di FS Logistix dell'aumento di capitale di Compagnia Ferroviaria Italiana (CFI), società posseduta al 100% da FHP Group. L’aumento di capitale avverrà attraverso il conferimento di un numero predeterminato di mezzi di trazione. Al termine FS Logistix sarà titolare del 30% di CFI.</p>
             </div>
         </section>
 
@@ -430,7 +417,8 @@
                 <div class="integration-flex">
                     <div class="integration-text fade-in-scroll">
                         <h2>Una piattaforma integrata per il cargo ferroviario</h2>
-                        <p>FHP si gioverà dell’integrazione tra la propria piattaforma industriale e gli asset strategici di FS Logistix che le permetterà di crescere ulteriormente come un operatore verticalmente integrato nel settore ferroviario cargo.</p>
+                        <p>L’operazione consentirà, inoltre, di combinare la <strong>piattaforma industriale</strong> di FHP con il <strong>know-how</strong> e gli <strong>asset strategici</strong> di FS Logistix. Ciò consentirà a FHP Group di <strong>crescere ulteriormente</strong> come un <strong>operatore verticalmente integrato</strong> nel settore <strong>ferroviario cargo</strong> a vantaggio del <strong>sistema Paese</strong>. Non solo: grazie alla crescita del <strong>trasporto via ferrovia</strong> (più efficiente dal punto di vista energetico), l’accordo produrrà anche un <strong>vantaggio ambientale</strong>.</p>
+                        <p>L’efficacia dell’accordo di Investimento è subordinata al verificarsi, entro la data prevista, delle autorizzazioni <strong>Antitrust</strong> e <strong>golden power</strong>.</p>
                     </div>
                     <div class="integration-image fade-in-scroll">
                         <img src="https://raw.githubusercontent.com/davideformatlab/Granaglie/refs/heads/main/image/step6.jpg" alt="Piattaforma Integrata">
@@ -452,10 +440,25 @@
                 </div>
             </div>
         </section>
+
+        <section class="section-teamwork">
+            <video autoplay loop muted playsinline class="teamwork-video-bg">
+                <source src="https://www.davidefrigoli.it/wp-content/uploads/2025/12/Drone_Footage_of_Logistics_Hub.mp4" type="video/mp4">
+            </video>
+            <div class="teamwork-overlay"></div>
+
+            <div class="container teamwork-content fade-in-scroll">
+                <h1 class="fhp-shimmer">F2i, FS Logistix, FHP: gioco di squadra</h1>
+            </div>
+        </section>
+
     </main>
 
     <footer>
-        <p>&copy; 2025 FHP Group - Strategic Agreement Announcement</p>
+        <div class="container footer-flex">
+            <img src="https://www.davidefrigoli.it/wp-content/uploads/2025/12/FHP_Logo_RGB.jpg" alt="FHP Logo" class="footer-logo">
+            <p class="footer-text">&copy; 2025 FHP Group - Strategic Agreement Announcement</p>
+        </div>
     </footer>
 
     <button class="back-to-top" id="backToTop" aria-label="Torna su">
@@ -504,27 +507,26 @@
                 observer.observe(el);
             });
 
-            // 3. PARALLAX EFFECT LOGIC (Lightweight)
+            // 3. PARALLAX EFFECT LOGIC
             const parallaxVideo = document.getElementById('parallaxVideo');
             const heroContent = document.querySelector('.hero-content');
 
             window.addEventListener('scroll', () => {
                 const scrolled = window.scrollY;
                 
-                // Hero Text Parallax (Fades out and moves up slightly)
+                // Hero Text Parallax
                 if (scrolled < window.innerHeight) {
                     heroContent.style.transform = `translateY(${scrolled * 0.4}px)`;
                     heroContent.style.opacity = 1 - (scrolled / 700);
                 }
 
-                // Section 2 Video Parallax (Moves slower than scroll)
-                // We calculate offset relative to viewport
+                // Section Agreement Video Parallax
                 const videoSection = document.querySelector('.section-agreement');
                 const sectionTop = videoSection.offsetTop;
                 const sectionHeight = videoSection.offsetHeight;
                 
                 if (scrolled + window.innerHeight > sectionTop && scrolled < sectionTop + sectionHeight) {
-                    const yPos = (scrolled - sectionTop) * 0.2; // Speed factor
+                    const yPos = (scrolled - sectionTop) * 0.2;
                     parallaxVideo.style.transform = `translateY(${yPos}px)`;
                 }
             });
