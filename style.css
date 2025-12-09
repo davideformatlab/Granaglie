@@ -2,3 +2,7 @@
 .container footer-flex {
     justify-content: center;
 }
+
+.section-header p {
+    text-align: left;
+}
